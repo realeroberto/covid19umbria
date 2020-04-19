@@ -4,7 +4,7 @@ Covid-19 statistics for Regione Umbria, based on the [public API](https://apisto
 
 Cf. also the [Dashboard COVID-19 Regione Umbria](https://github.com/Regione-Umbria/coronavirus).
 
-Partially inspired to the [covid](https://github.com/ahmednafies/covid) package.
+Partially inspired by the [covid](https://github.com/ahmednafies/covid) package.
 
 ## Installation
 
