@@ -16,6 +16,8 @@ Partially inspired by the [covid](https://github.com/ahmednafies/covid) package.
 
 See the [example](example.py).
 
+A Jupyter Notebook is available through [Google Colab](https://colab.research.google.com/drive/1BvRTHkzfC831B1jWThE_tFOv3hRuitRh?usp=sharing).
+
 ### Get All Data
 
 ```python
