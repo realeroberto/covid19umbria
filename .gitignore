@@ -14,3 +14,5 @@ __pycache__
 .pypirc
 .env
 .mypy_cache
+
+build/
