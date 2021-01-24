@@ -14,8 +14,8 @@ if __name__ == "__main__":
 
     for date in date_list:
         current_active = covid19.get_current_active_cases(date)
-        new_active = covid19.get_new_active_cases(date)
+        total_confirmed = covid19.get_total_confirmed_cases(date)
         deaths = covid19.get_total_deaths(date)
         recovered = covid19.get_total_recovered(date)
 
-        print(f"Date: {date.strftime('%Y-%m-%d')}, current active: {current_active}, new active: {new_active}, deaths: {deaths}, recovered: {recovered}")
+        print(f"Date: {date.strftime('%Y-%m-%d')}, current active: {current_active}, total confirmed: {total_confirmed}, deaths: {deaths}, recovered: {recovered}")

@@ -73,7 +73,7 @@ class Covid19Umbria(object):
         """
         return sum(d['attualmente_positivi'] for d in self.get_data(date))
 
-    def get_new_active_cases(self, date=None) -> int:
+    def get_total_confirmed_cases(self, date=None) -> int:
         """ Number of confirmed cases
         """
         return sum(d['casi_positivi'] for d in self.get_data(date))
