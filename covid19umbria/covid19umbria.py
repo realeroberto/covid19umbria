@@ -20,7 +20,12 @@ class Covid19Umbria(object):
         
     def __yesterday(self):
         yesterday = date.today() - timedelta(days=1)
-        return yesterday.strftime('%Y-%m-%d')
+        return yesterday
+
+    def __get_date(self, date=None):
+        if date is None:
+            date = self.__yesterday()
+        return date
 
     def refresh(self, date=None):
         if date is None:
@@ -36,8 +41,7 @@ class Covid19Umbria(object):
         """ Fetch all data
         """
 
-        if date is None:
-            date = self.__yesterday()
+        date = self.__get_date(date)
 
         try:
             return self.__cache[date]
@@ -45,7 +49,7 @@ class Covid19Umbria(object):
             pass
 
         params = dict(
-            data=date,
+            data=date.strftime('%Y-%m-%d'),
             offset=1,
             limit=self.__limit,
         )
@@ -57,6 +61,12 @@ class Covid19Umbria(object):
             return response["results"]
         except KeyError:
             raise Exception(response)
+
+    def get_raw_data(self, date=None) -> list:
+        return self.get_data(date)
+
+    def get_date(self, date=None) -> str:
+        return self.__get_date(date)
 
     def get_current_active_cases(self, date=None) -> int:
         """ Current number of active cases
