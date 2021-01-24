@@ -37,7 +37,7 @@ class Covid19Umbria(object):
             except KeyError:
                 pass
 
-    def get_data(self, date=None) -> list:
+    def get_data(self, date=None) -> dict:
         """ Fetch all data
         """
 
@@ -57,12 +57,14 @@ class Covid19Umbria(object):
         response = requests.get(URL, params=params).json()
 
         try:
-            self.__cache[date] = response["results"]
-            return response["results"]
+            for item in response["results"]:
+                if item["tipo_geo"] == "Regione": # and item["denominazione_geo"] == "Umbria":
+                    self.__cache[date] = item
+                    return item
         except KeyError:
             raise Exception(response)
 
-    def get_raw_data(self, date=None) -> list:
+    def get_raw_data(self, date=None) -> dict:
         return self.get_data(date)
 
     def get_date(self, date=None) -> str:
@@ -71,19 +73,19 @@ class Covid19Umbria(object):
     def get_current_active_cases(self, date=None) -> int:
         """ Current number of active cases
         """
-        return sum(d['attualmente_positivi'] for d in self.get_data(date))
+        return self.get_data(date)["attualmente_positivi"]
 
     def get_total_confirmed_cases(self, date=None) -> int:
         """ Number of confirmed cases
         """
-        return sum(d['casi_positivi'] for d in self.get_data(date))
+        return self.get_data(date)["casi_positivi"]
 
     def get_total_deaths(self, date=None) -> int:
         """ Number of deaths
         """
-        return sum(d['deceduti'] for d in self.get_data(date))
+        return self.get_data(date)["deceduti"]
 
     def get_total_recovered(self, date=None) -> int:
         """ Number of recovered cases
         """
-        return sum(d['guariti'] for d in self.get_data(date))
+        return self.get_data(date)["guariti"]
