@@ -31,10 +31,10 @@ covid19.get_data()
 current_active = covid19.get_current_active_cases()
 ```
 
-### Get New Active Active cases
+### Get Total Confirmed cases
 
 ```python
-new_active = covid19.get_new_confirmed_cases()
+new_active = covid19.get_total_confirmed_cases()
 ```
 
 ### Get Total Recovered cases
